@@ -17,4 +17,10 @@ public class HelloController {
     public HelloResponseDto helloDto(@RequestParam("name") String name, @RequestParam("amount") int amount) {
         return new HelloResponseDto(name,amount);
     }
+
+    @GetMapping("/hello/hyun")
+    public String checkHyun(@RequestParam("name") String name, @RequestParam("amount") int amount) {
+        HelloResponseDto dto = new HelloResponseDto(name, amount);
+        return "false";
+    }
 }

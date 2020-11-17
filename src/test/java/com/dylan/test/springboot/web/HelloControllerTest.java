@@ -1,5 +1,6 @@
 package com.dylan.test.springboot.web;
 
+import com.dylan.test.springboot.web.dto.HelloResponseDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,25 @@ public class HelloControllerTest {
                     .andExpect(status().isOk())
                     .andExpect(jsonPath("$.name", is(name)))
                     .andExpect(jsonPath("$.amount", is(amount)));
+    }
+
+    @Test
+    public void helloDto의_isHyun을_검사한다() throws Exception {
+        String name = "hyun";
+        int amount = 1000;
+
+        HelloResponseDto dto = new HelloResponseDto(name,amount);
+
+        mvc.perform(get("/hello/hyun")
+                .param("name",name)
+                .param("amount",String.valueOf(amount)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is(name)))
+                .andExpect(jsonPath("$.amount", is(amount)));
+
+//        assertThat(dto.isHyun()).is(true);
+
+
+
     }
 }
